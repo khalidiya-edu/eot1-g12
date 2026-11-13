@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>EoT1 Revision Platform</title>
+<style>
+html,body{margin:0;height:100%;background:#0a1228;color:#f4eedd;font:500 17px/1.7 "IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif}
+body{display:grid;place-items:center}
+.c{width:min(460px,90vw);padding:30px 28px;border-radius:20px;background:linear-gradient(180deg,#17294a,#0c1728);box-shadow:0 0 0 1px rgba(217,189,118,.7),0 30px 70px -20px #000;text-align:center}
+h1{margin:0 0 6px;font:800 22px "Segoe UI",sans-serif;color:#f0dca0}h1 small{display:block;font:600 15px "IBM Plex Sans Arabic",sans-serif;color:#d9bd76;margin-top:4px}
+p{margin:10px 0 0;color:#ece7d8}.bar{height:5px;border-radius:3px;background:rgba(217,189,118,.18);margin-top:18px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:#d9bd76;transition:width .2s}
+.e h1{color:#ff9a8f}
+</style></head><body>
+<div class="c" id="c"><h1 id="h">Opening your platform<small>جارٍ فتح المنصة</small></h1><p id="p">Please wait a moment · لحظات من فضلك</p><div class="bar"><i id="b"></i></div></div>
+<noscript><p style="text-align:center">JavaScript is required · يلزم تفعيل جافاسكربت</p></noscript>
+<script>
+(async function(){
+  var $=function(i){return document.getElementById(i)}, BUILD='decaab186b';
+  function fail(h,p){$('c').classList.add('e');$('h').innerHTML=h;$('p').innerHTML=p;$('b').style.width='0'}
+  function b64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
+  /* the key is kept as a NON-EXTRACTABLE CryptoKey in this site's own storage: scripts cannot read it back out, only use it */
+  function idb(){return new Promise(function(res,rej){var r=indexedDB.open('eot-vault',1);r.onupgradeneeded=function(){r.result.createObjectStore('k')};r.onsuccess=function(){res(r.result)};r.onerror=function(){rej(r.error)}})}
+  function idbGet(db,k){return new Promise(function(res){var q=db.transaction('k').objectStore('k').get(k);q.onsuccess=function(){res(q.result)};q.onerror=function(){res(null)}})}
+  function idbPut(db,k,v){return new Promise(function(res,rej){var t=db.transaction('k','readwrite');t.objectStore('k').put(v,k);t.oncomplete=res;t.onerror=function(){rej(t.error)}})}
+  var SLOT='key:'+location.pathname.replace(/[^/]*$/,'');
+  if(!(window.crypto&&crypto.subtle&&window.indexedDB)){ fail('Open it in a modern browser<small>افتحها في متصفح حديث</small>','Chrome, Edge, Safari or Firefox over https.'); return; }
+  var m=/[#&]k=([A-Za-z0-9_-]+)/.exec(location.hash), key=null, db=null;
+  try{ db=await idb(); }catch(e){}
+  if(m){
+    try{ key=await crypto.subtle.importKey('raw',b64(m[1]),'AES-GCM',false,['decrypt']); if(db) await idbPut(db,SLOT,key); }catch(e){ key=null; }
+    try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}   // the key leaves the address bar at once
+  } else if(db){ key=await idbGet(db,SLOT); }
+  if(!key){ fail('This link is incomplete<small>الرابط غير مكتمل</small>','Ask your teacher for the full link or the QR code.<br>اطلب من معلمك الرابط الكامل أو رمز QR.'); return; }
+  try{
+    var r=await fetch('app.bin?v='+BUILD); if(!r.ok) throw new Error('http '+r.status);
+    var total=+r.headers.get('content-length')||0, rd=r.body.getReader(), parts=[], got=0, x;
+    while(!(x=await rd.read()).done){ parts.push(x.value); got+=x.value.length; if(total) $('b').style.width=Math.min(90,got*90/total)+'%'; }
+    var buf=new Uint8Array(got), o=0; parts.forEach(function(p){buf.set(p,o);o+=p.length}); parts=null;
+    var plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:buf.subarray(0,12)},key,buf.subarray(12));
+    $('b').style.width='96%'; buf=null;
+    var html=await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+    document.open(); document.write(html); document.close();
+  }catch(e){
+    if(db){ try{ var t=db.transaction('k','readwrite'); t.objectStore('k').delete(SLOT); }catch(_){} }
+    fail('Could not open the platform<small>تعذّر فتح المنصة</small>','The link may be old or wrong. Ask your teacher for a new one.<br>قد يكون الرابط قديماً أو خاطئاً.');
+  }
+})();
+</script></body></html>

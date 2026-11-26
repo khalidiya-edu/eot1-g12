@@ -1,0 +1,43 @@
+EoT1 Revision Platform (Grades 10, 11, 12 Advanced Mathematics)
+Copyright (c) 2026 Yousef Alyousef (Yousef Al Yousef), Al Khalidia Boys School C3, United Arab Emirates.
+All rights reserved.
+
+This work - its source code, calculator emulators, Calculator Coach, question and
+solution compilations, page design, guide texts, diagrams, animations and data
+organisation - is original authored work protected by copyright under UAE Federal
+Law No. 38 of 2021 on Copyright and Neighbouring Rights and by the Berne Convention.
+
+It is made available to the students and colleagues of the author through the
+author's own links and school packages, for personal study and classroom use only.
+
+Without the author's prior written permission you may NOT:
+  - copy, extract, decrypt, decompile, de-obfuscate or reverse engineer any part of it;
+  - redistribute, re-host, sell, publish or upload it, in whole or in part, anywhere else;
+  - remove or alter this notice, the ownership marks or the build identifiers it contains;
+  - use any part of it to build another platform, product or service.
+
+Every published build carries ownership marks and build identifiers that allow its
+origin to be proved. Unauthorised use will be reported to the hosting provider and to
+the competent authorities.
+
+Third-party material (textbook content and past-paper wording) remains the property
+of its respective owners and is used here for education only.
+
+------------------------------------------------------------------------------------
+
+منصة المراجعة EoT1 (الصفوف 10 و11 و12 - الرياضيات المتقدمة)
+جميع الحقوق محفوظة (c) 2026 يوسف اليوسف، مدرسة الخالدية للبنين - الحلقة الثالثة، الإمارات العربية المتحدة.
+
+هذا العمل - بما يشمل الكود البرمجي والآلات الحاسبة المحاكاة والمدرّب ومجموعات الأسئلة والحلول
+وتصميم الصفحات والأدلة والرسوم والحركات وتنظيم البيانات - عمل أصيل محمي بموجب قانون حقوق المؤلف
+والحقوق المجاورة الإماراتي (القانون الاتحادي رقم 38 لسنة 2021) واتفاقية برن.
+
+يُتاح لطلاب المؤلف وزملائه عبر روابطه وحزمه المدرسية فقط، للدراسة الشخصية والاستخدام الصفي.
+
+يُحظر دون إذن كتابي مسبق من المؤلف: النسخ أو الاستخراج أو فك التشفير أو الهندسة العكسية،
+أو إعادة النشر أو الاستضافة أو البيع، أو إزالة هذا الإشعار أو العلامات ومعرّفات الإصدار،
+أو استخدام أي جزء منه في بناء منصة أو منتج آخر.
+
+يحمل كل إصدار منشور علامات ملكية ومعرّفات إصدار تُثبت أصله، وسيُبلَّغ مزوّد الاستضافة والجهات المختصة عن أي استخدام غير مصرّح به.
+
+المحتوى المقتبس من الكتاب المدرسي وأسئلة السنوات السابقة يبقى ملكًا لأصحابه ويُستخدم لأغراض تعليمية فقط.
